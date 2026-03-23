@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AdaHome extends StatefulWidget {
-  const AdaHome({super.key});
+  final String nome;
+  final String email;
+  const AdaHome({super.key, required this.nome, required this.email});
 
   @override
   State<AdaHome> createState() => _AdaHomeState();
@@ -45,14 +47,14 @@ class _AdaHomeState extends State<AdaHome> {
               child: Container(
                 width: double.infinity,
                 color: Colors.green,
-                child: Text("Ada", style: TextStyle(fontSize: 30)),
+                child: Text(widget.nome, style: TextStyle(fontSize: 30)),
               ),
             ),
             Expanded(
               flex: 2,
               child: Container(
                 color: Colors.red,
-                child: Text("Vespertino", style: TextStyle(fontSize: 30)),
+                child: Text(widget.email, style: TextStyle(fontSize: 30)),
               ),
             ),
             Expanded(
@@ -103,7 +105,7 @@ class _AdaHomeState extends State<AdaHome> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        print(inputController.text);
+                        Navigator.pop(context);
                       },
                       child: Text("Confirmar"),
                     ),
