@@ -10,7 +10,7 @@ class AdaAppClean extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: AdaHome(),
+      home: AdaHome(nome: "a", email: "s",),
     );
   }
 }
