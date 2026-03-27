@@ -1,3 +1,5 @@
+import 'package:ada_app/routes/app_routes.dart';
+import 'package:ada_app/service/usuario.dart';
 import 'package:flutter/material.dart';
 
 import 'ada_home.dart';
@@ -22,11 +24,20 @@ class _LoginState extends State<Login> {
       setState(() {});
     }
 
-    Navigator.pushReplacement(
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => AdaHome(),
+    //   ),
+    // );
+
+    Navigator.pushNamedAndRemoveUntil(
       context,
-      MaterialPageRoute(
-        builder: (context) => AdaHome(nome: txtNome.text, email: txtEmail.text),
-      ),
+      AppRoutes.home,
+      (route) => false,
+      arguments: {
+        "user": Usuario(nome: "Roberto Santoro", email: "roberto@mobile.com"),
+      },
     );
   }
 

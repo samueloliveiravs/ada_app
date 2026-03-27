@@ -1,9 +1,8 @@
+import 'package:ada_app/service/usuario.dart';
 import 'package:flutter/material.dart';
 
 class AdaHome extends StatefulWidget {
-  final String nome;
-  final String email;
-  const AdaHome({super.key, required this.nome, required this.email});
+  const AdaHome({super.key});
 
   @override
   State<AdaHome> createState() => _AdaHomeState();
@@ -30,6 +29,11 @@ class _AdaHomeState extends State<AdaHome> {
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
+    Usuario user = args["user"];
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Ada App"),
@@ -47,14 +51,14 @@ class _AdaHomeState extends State<AdaHome> {
               child: Container(
                 width: double.infinity,
                 color: Colors.green,
-                child: Text(widget.nome, style: TextStyle(fontSize: 30)),
+                child: Text(user.nome, style: TextStyle(fontSize: 30)),
               ),
             ),
             Expanded(
               flex: 2,
               child: Container(
                 color: Colors.red,
-                child: Text(widget.email, style: TextStyle(fontSize: 30)),
+                child: Text(user.email, style: TextStyle(fontSize: 30)),
               ),
             ),
             Expanded(
