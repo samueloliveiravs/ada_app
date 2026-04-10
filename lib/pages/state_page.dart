@@ -1,5 +1,5 @@
+import 'package:ada_app/controllers/theme_controller.dart';
 import 'package:ada_app/service/api_state.dart';
-import 'package:ada_app/service/cat_api.dart';
 import 'package:ada_app/service/cat_list_state.dart';
 import 'package:flutter/material.dart';
 
@@ -7,14 +7,15 @@ class StatePage extends StatelessWidget {
   StatePage({super.key});
 
   final service = ApiState();
+  var themeController = ThemeController();
 
   @override
   Widget build(BuildContext context) {
-    var state = service.state;
     return ListenableBuilder(
       listenable: service,
       builder: (context, index) {
         Widget body = Container();
+        var state = service.state;
 
         if (state is LoadinCatListState) {
           body = Center(child: CircularProgressIndicator());
@@ -30,7 +31,7 @@ class StatePage extends StatelessWidget {
               ],
             ),
           );
-        } else if (state is GettedCatListState) {
+        } else if (state is EmptyCatListState) {
           body = Center(
             child: ElevatedButton(
               onPressed: service.getData,
@@ -48,6 +49,22 @@ class StatePage extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
+            title: Text("Gerenciamento de Estado"),
+            actions: [
+              Icon(Icons.light_mode),
+              AnimatedBuilder(
+                animation: themeController,
+                builder: (context, _) {
+                  return Switch(
+                    value: themeController.state.isDark,
+                    onChanged: (_) {
+                      themeController.toggleTheme();
+                    },
+                  );
+                },
+              ),
+              Icon(Icons.dark_mode),
+            ],
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
           body: body,

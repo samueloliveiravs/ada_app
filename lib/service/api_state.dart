@@ -8,18 +8,18 @@ class ApiState extends ChangeNotifier {
   CatListState state = EmptyCatListState();
 
   void getData() async {
+    print("object");
     state = LoadinCatListState();
+    print(state);
     notifyListeners();
 
     try {
       final resposta = await service.fetchData();
       state = GettedCatListState(dados: resposta);
+      print("Resposta");
       notifyListeners();
     } catch (e) {
       state = ErrorCatListState(erro: e.toString());
-      notifyListeners();
-    } finally {
-      state = EmptyCatListState();
       notifyListeners();
     }
   }

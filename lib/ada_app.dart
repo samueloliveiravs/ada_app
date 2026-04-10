@@ -1,5 +1,5 @@
+import 'package:ada_app/controllers/theme_controller.dart';
 import 'package:ada_app/pages/ada_home.dart';
-import 'package:ada_app/pages/login.dart';
 import 'package:ada_app/pages/state_page.dart';
 import 'package:ada_app/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +10,26 @@ class AdaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: AppRoutes.login,
-      routes: {
-        AppRoutes.login: (context) => StatePage(),
-        AppRoutes.home: (context) => AdaHome(),
+    var themeContoller = ThemeController();
+
+    return AnimatedBuilder(
+      animation: themeContoller,
+      builder: (context, _) {
+        return AnimatedTheme(
+          duration: Duration(microseconds: 400),
+          data: themeContoller.state.isDark
+              ? ThemeData.dark()
+              : ThemeData.light(),
+          child: MaterialApp(
+            initialRoute: AppRoutes.login,
+            routes: {
+              AppRoutes.login: (context) => StatePage(),
+              AppRoutes.home: (context) => AdaHome(),
+            },
+            debugShowCheckedModeBanner: false,
+          ),
+        );
       },
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-        textTheme: GoogleFonts.fugazOneTextTheme(),
-      ),
     );
   }
 }
