@@ -9,3 +9,5 @@ class ThemeController extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+final themeController = ThemeController();

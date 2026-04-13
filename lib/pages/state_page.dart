@@ -7,7 +7,6 @@ class StatePage extends StatelessWidget {
   StatePage({super.key});
 
   final service = ApiState();
-  var themeController = ThemeController();
 
   @override
   Widget build(BuildContext context) {
