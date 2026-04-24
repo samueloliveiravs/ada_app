@@ -1,4 +1,7 @@
+import 'package:ada_app/controllers/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ada_app.dart';
 import 'pages/splash_screen.dart';
@@ -9,7 +12,13 @@ void main() async {
 
   runApp(SplashScreen());
   //Verificação de algo
-  //await Future.delayed(Duration(seconds: 10));
+  final prefs = await SharedPreferences.getInstance();
+  bool isDark = prefs.getBool('darkMode') ?? false;
 
-  runApp(AdaApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeController(isDark: isDark),
+      child: AdaApp(),
+    ),
+  );
 }

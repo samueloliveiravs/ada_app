@@ -2,6 +2,7 @@ import 'package:ada_app/controllers/theme_controller.dart';
 import 'package:ada_app/service/api_state.dart';
 import 'package:ada_app/service/cat_list_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StatePage extends StatelessWidget {
   StatePage({super.key});
@@ -10,6 +11,8 @@ class StatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = context.watch<ThemeController>();
+
     return ListenableBuilder(
       listenable: service,
       builder: (context, index) {
@@ -51,15 +54,10 @@ class StatePage extends StatelessWidget {
             title: Text("Gerenciamento de Estado"),
             actions: [
               Icon(Icons.light_mode),
-              AnimatedBuilder(
-                animation: themeController,
-                builder: (context, _) {
-                  return Switch(
-                    value: themeController.state.isDark,
-                    onChanged: (_) {
-                      themeController.toggleTheme();
-                    },
-                  );
+              Switch(
+                value: themeController.isDark,
+                onChanged: (_) {
+                  themeController.toggleTheme();
                 },
               ),
               Icon(Icons.dark_mode),

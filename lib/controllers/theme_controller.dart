@@ -1,13 +1,20 @@
 import 'package:ada_app/state/theme_state.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends ChangeNotifier {
-  var state = ThemeState(isDark: true);
+  static const _key = "darkMode";
 
-  void toggleTheme() {
-    state = state.copyWith(isDark: !state.isDark);
+  bool isDark;
+
+  ThemeController({required this.isDark});
+
+  Future<void> toggleTheme() async {
+    isDark = !isDark;
+
+    final prefs =  await SharedPreferences.getInstance();
+    await prefs.setBool(_key, isDark);
+
     notifyListeners();
   }
 }
-
-final themeController = ThemeController();

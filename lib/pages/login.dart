@@ -2,7 +2,6 @@ import 'package:ada_app/routes/app_routes.dart';
 import 'package:ada_app/service/usuario.dart';
 import 'package:flutter/material.dart';
 
-import 'ada_home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

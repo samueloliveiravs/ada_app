@@ -1,4 +1,3 @@
-import 'package:ada_app/service/usuario.dart';
 import 'package:ada_app/shared/materia_card.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +26,7 @@ class _AdaHomeState extends State<AdaHome> {
         title: Text("Ada App"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: ListView.builder(
           itemCount: materias.length,
