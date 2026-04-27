@@ -4,4 +4,5 @@ class AppRoutes {
   static const profile = "/profile";
   static const cep = "/cep";
   static const todos = "/todos";
+  static const media = "/media";
 }
