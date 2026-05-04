@@ -1,4 +1,3 @@
-import 'package:ada_app/state/theme_state.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

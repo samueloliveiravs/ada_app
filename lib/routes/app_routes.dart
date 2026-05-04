@@ -5,4 +5,5 @@ class AppRoutes {
   static const cep = "/cep";
   static const todos = "/todos";
   static const media = "/media";
+  static const hero = "/hero";
 }

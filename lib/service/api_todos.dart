@@ -22,7 +22,7 @@ class ApiTodos {
         return date;
       }
     } catch (e) {
-      print("Erro: " + e.toString());
+      print("Erro: $e");
     }
 
     return date;

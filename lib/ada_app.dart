@@ -12,7 +12,7 @@ class AdaApp extends StatelessWidget {
     final themeController = context.watch<ThemeController>();
 
     return MaterialApp(
-      initialRoute: AppRoutes.media,
+      initialRoute: AppRoutes.hero,
       routes: Routes.routes,
       theme: themeController.isDark ? ThemeData.dark() : ThemeData.light(),
       debugShowCheckedModeBanner: false,
